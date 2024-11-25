@@ -1,0 +1,90 @@
+.customize-control-kirki-toggle .kirki-toggle {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.customize-control-kirki-toggle .kirki-toggle .kirki-control-label {
+  width: 80%;
+}
+.customize-control-kirki-toggle .kirki-toggle .kirki-control-form {
+  text-align: right;
+  width: 20%;
+}
+.customize-control-kirki-toggle .kirki-toggle .kirki-toggle-switch-label {
+  width: 100%;
+}
+.customize-control-kirki-toggle .kirki-toggle .kirki-toggle-switch-label::before {
+  right: 0;
+}
+.customize-control-kirki-toggle .kirki-toggle .kirki-toggle-switch-label::after {
+  right: 18px;
+}
+
+.customize-control-kirki-switch .kirki-switch .kirki-toggle-switch-label {
+  padding: 10px 0 12px 44px;
+  text-align: left;
+}
+.customize-control-kirki-switch .kirki-switch .kirki-toggle-switch-label::before {
+  left: 0;
+}
+.customize-control-kirki-switch .kirki-switch .kirki-toggle-switch-label::after {
+  left: 0;
+}
+.customize-control-kirki-switch .kirki-switch .toggle-on,
+.customize-control-kirki-switch .kirki-switch .toggle-off {
+  position: relative;
+  bottom: -2px;
+  padding-left: 5px;
+}
+.customize-control-kirki-switch .kirki-switch .toggle-on {
+  display: none;
+  color: #0073aa;
+}
+.customize-control-kirki-switch .kirki-switch .toggle-off {
+  display: inline-block;
+  color: #82878c;
+}
+
+.kirki-toggle-switch-label {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.kirki-toggle-switch-label::before, .kirki-toggle-switch-label::after {
+  box-sizing: border-box;
+  content: "";
+  position: absolute;
+  margin: 0;
+  outline: 0;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  transition: all 350ms cubic-bezier(0, 0.95, 0.38, 0.98), background-color 150ms ease;
+}
+.kirki-toggle-switch-label::before {
+  width: 37px;
+  height: 14px;
+  background-color: #b4b9be;
+  border: 1px solid #b4b9be;
+  border-radius: 8px;
+}
+.kirki-toggle-switch-label::after {
+  width: 22px;
+  height: 22px;
+  background-color: #999;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.kirki-toggle-switch-input {
+  opacity: 0;
+}
+.kirki-toggle-switch-input:checked + .kirki-toggle-switch-label::after {
+  background-color: #0073aa;
+  transform: translate3d(100%, -50%, 0);
+}
+.kirki-toggle-switch-input:checked + .kirki-toggle-switch-label .toggle-on {
+  display: inline-block;
+}
+.kirki-toggle-switch-input:checked + .kirki-toggle-switch-label .toggle-off {
+  display: none;
+}/*# sourceMappingURL=control.css.map */

@@ -1,0 +1,124 @@
+.kirki-datepicker-popup {
+  padding-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: rgba(0, 0, 0, 0.09) 0 12px 15px 0;
+  border-radius: 6px;
+  z-index: 500001 !important;
+  margin-top: 15px;
+  overflow: hidden;
+  max-width: 275px;
+}
+.kirki-datepicker-popup .ui-datepicker-header {
+  padding: 10px;
+  background-color: #eee;
+}
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-next,
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-prev {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-next:hover, .kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-next:active, .kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-next:focus,
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-prev:hover,
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-prev:active,
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-prev:focus {
+  color: #fff;
+  background-color: #2271b1;
+}
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-next:after, .kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-next:before,
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-prev:after,
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-prev:before {
+  font-family: dashicons;
+}
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-next .ui-icon,
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-prev .ui-icon {
+  display: none;
+}
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-prev {
+  left: 10px;
+}
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-prev:before {
+  content: "\f341";
+}
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-next {
+  right: 10px;
+}
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-next:after {
+  content: "\f345";
+}
+.kirki-datepicker-popup .ui-datepicker-header .ui-datepicker-title {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar {
+  border-collapse: collapse;
+  padding-bottom: 20px;
+  width: 100%;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar thead {
+  background-color: #ddd;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar thead th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody {
+  padding: 5px;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody td {
+  padding: 2px;
+  text-align: center;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody a {
+  text-decoration: none;
+  color: #333;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-datepicker-today .ui-state-default {
+  background-color: #eee;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-datepicker-today .ui-state-active {
+  background-color: #2271b1;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-datepicker-today .ui-state-active:hover, .kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-datepicker-today .ui-state-active:active, .kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-datepicker-today .ui-state-active:focus {
+  background-color: #2271b1;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-state-default {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-state-default:hover, .kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-state-default:active {
+  background-color: #eee;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-state-default:focus {
+  color: #fff;
+  background-color: #2271b1;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-state-active {
+  background-color: #2271b1;
+  color: #fff;
+}
+.kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-state-active:hover, .kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-state-active:active, .kirki-datepicker-popup .ui-datepicker-calendar tbody .ui-state-active:focus {
+  background-color: #2271b1;
+}/*# sourceMappingURL=control.css.map */

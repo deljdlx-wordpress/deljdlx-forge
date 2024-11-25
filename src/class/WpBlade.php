@@ -13,12 +13,24 @@ use Illuminate\View\ViewServiceProvider;
 class WpBlade
 {
 
+    public static $instance;
+
     public $factory;
 
 
     private $compiler;
 
     private Container $container;
+
+
+    public static function getInstance(Container $container)
+    {
+        if(!static::$instance) {
+            static::$instance = new static($container);
+        }
+        return static::$instance;
+    }
+
 
     public function getCompiler()
     {
@@ -45,26 +57,23 @@ class WpBlade
 
     public function make($view, $data = [], $mergeData = []): View
     {
+        foreach($this->container->config->get('view')['paths'] as $path) {
+            $this->factory->getFinder()->addLocation($path);
+        }
+
+
         return $this->factory->make($view, $data, $mergeData);
     }
 
     public function directive(string $name, $callback)
     {
         return $this->compiler->directive($name, $callback);
-        // return Blade::directive($name, $callback);
     }
 
     public function component(string $name, string $className)
     {
-        return $this->compiler->component($name, $className);
-        // return Blade::component($name, $className);
+        $this->compiler->component($name, $className);
     }
 
-    /*
-    public function __call(string $method, array $params)
-    {
-        return call_user_func_array([$this->factory, $method], $params);
-    }
-    */
 }
 

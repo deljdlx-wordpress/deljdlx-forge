@@ -1,0 +1,45 @@
+.kirki-tooltip-wrapper {
+  position: relative;
+  z-index: 5;
+}
+.kirki-tooltip-wrapper .tooltip-trigger {
+  position: relative;
+  top: 0;
+  left: 3px;
+  text-decoration: none;
+}
+.kirki-tooltip-wrapper .tooltip-trigger:hover + .tooltip-content {
+  bottom: 32px;
+  opacity: 1;
+  visibility: visible;
+  z-index: 99999;
+}
+.kirki-tooltip-wrapper .tooltip-trigger .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.kirki-tooltip-wrapper .tooltip-content {
+  position: absolute;
+  bottom: 29px;
+  left: 0;
+  padding: 7px;
+  min-width: 275px;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 13px;
+  color: #fff;
+  line-height: 1.4em;
+  background: #000;
+  border-radius: 3px;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+  transition: all 0.2s linear;
+}
+.kirki-tooltip-wrapper .tooltip-content a {
+  color: #00a0d2;
+}
+
+/*# sourceMappingURL=control.css.map */

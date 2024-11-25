@@ -21,10 +21,6 @@ class User extends CorcelUser
 
     public function checkPassword(string $password)
     {
-        // dump($password);
-        // dump($this);
-        // dump(wp_check_password($password, $this->user_pass, $this->ID));
-        // echo __FILE__.':'.__LINE__; exit();
         return wp_check_password($password, $this->user_pass, $this->ID);
     }
 
@@ -83,6 +79,11 @@ class User extends CorcelUser
         }
 
         return $user;
+    }
+
+    public function can(string $capability): bool
+    {
+        return current_user_can($capability);
     }
 
     public function getRoles()

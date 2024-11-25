@@ -7,9 +7,19 @@ use Illuminate\Http\Request;
 class Router
 {
 
+    public static $instance;
+
     private $routes = [];
     private string $rootPath;
     private static ?Request $request = null;
+
+    public static function getInstance()
+    {
+        if(!static::$instance) {
+            static::$instance = new static();
+        }
+        return static::$instance;
+    }
 
 
     public static function getRequest(): Request
@@ -65,7 +75,6 @@ class Router
 
         foreach ($this->routes as $route) {
 
-            // dump($route);
             foreach($route['methods'] as $routeMethod) {
                 if($method == $routeMethod && preg_match('`'.$route['path'].'`', $uri)) {
                     return $route['callback'](static::getRequest());
@@ -84,12 +93,7 @@ class Router
         }
         $path = $this->routes[$routeName]['path'];
 
-        // dump($this->routes[$routeName]);
-        // dump($this->routes[$routeName]['path']);
-
         return $this->rootPath . $path;
-
-        
     }
 }
 

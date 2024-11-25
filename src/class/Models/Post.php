@@ -184,7 +184,7 @@ class Post extends ModelPost
 
         // give all capabilities to admin
         $admin = get_role('administrator');
-        // dump($admin);
+
         $admin->add_cap('edit_'.$name);
         $admin->add_cap('edit_'.$name.'s');
         $admin->add_cap('edit_others_'.$name.'s');

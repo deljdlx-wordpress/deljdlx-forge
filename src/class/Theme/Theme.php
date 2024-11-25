@@ -10,6 +10,7 @@ use Illuminate\Config\Repository;
 
 class Theme
 {
+    public static $instance;
 
     public readonly View $view;
     public readonly Loop $loop;
@@ -35,6 +36,14 @@ class Theme
     private array  $supports = [];
 
 
+
+    public static function getInstance(Container $container)
+    {
+        if(!static::$instance) {
+            static::$instance = new static($container);
+        }
+        return static::$instance;
+    }
 
 
 
@@ -113,9 +122,19 @@ class Theme
         }
     }
 
-    public function addCss(array $css)
+    public function addCss(array|string $css, $prepend = false)
     {
-        $this->css = array_merge($this->css, $css);
+        if(is_string($css)) {
+            $css = [$css];
+        }
+        if($prepend) {
+            $this->css = array_merge($css, $this->css);
+        }
+        else {
+            $this->css = array_merge($this->css, $css);
+        }
+        $this->css = array_unique($this->css);
+
         return $this;
     }
 
@@ -155,16 +174,11 @@ class Theme
     public function loadCss()
     {
         foreach ($this->css as $index => $url) {
-            if(strpos($url, 'http') === 0) {
-                $cssURL = $url;
-            }
-            else {
-                $cssURL = get_theme_file_uri($url);
-            }
+            $cssUrl = $this->computeUrl($url);
 
             wp_enqueue_style(
                 'forge-css-' . $index,
-                $cssURL,
+                $cssUrl,
             );
         }
     }
@@ -172,16 +186,11 @@ class Theme
     public function loadAdminCss()
     {
         foreach($this->adminCss as $index => $url) {
-            if(strpos($url, 'http') === 0) {
-                $cssURL = $url;
-            }
-            else {
-                $cssURL = get_theme_file_uri($url);
-            }
+            $cssUrl = $this->computeUrl($url);
 
             wp_enqueue_style(
                 'forge-admin-css-' . $index,
-                $cssURL,
+                $cssUrl,
             );
         }
     }
@@ -189,10 +198,14 @@ class Theme
     public function loadJs()
     {
         foreach ($this->js as $index => $url) {
+            $url = $this->computeUrl($url);
 
-            if(strpos($url, 'http') !==0 && strpos($url, '//') !==0) {
-                $url = get_theme_file_uri($url);
-            }
+            // echo '<div style="border: solid 2px #F00">';
+            //     echo '<div style="; background-color:#CCC">@'.__FILE__.' : '.__LINE__.'</div>';
+            //     echo '<pre style="background-color: rgba(255,255,255, 0.8); color: #000">';
+            //     print_r($url);
+            //     echo '</pre>';
+            // echo '</div>';
 
             wp_enqueue_script(
                 'forge-js-' . $index,   // js unique name
@@ -202,6 +215,24 @@ class Theme
                 true // js file loaded at the end of body
             );
         }
+    }
+
+
+    public function computeUrl(string $source)
+    {
+        if(strpos($source, 'http') === 0) {
+            $url = $source;
+        }
+        elseif(strpos($source, 'plugin://') === 0) {
+            $pluginName = preg_replace('`plugin://(.*?)/.*`', '$1', $source);
+            $path = preg_replace('`plugin://.*?/(.*)`', '$1', $source);
+            $url = get_home_url() . '/wp-content/plugins/' . $pluginName . '/' . $path;
+        }
+        else {
+            $url = get_theme_file_uri($source);
+        }
+
+        return $url;
     }
 
     public function loadSupports()

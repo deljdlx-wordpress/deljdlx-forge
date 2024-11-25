@@ -9,10 +9,26 @@ use Deljdlx\WPForge\WpBlade;
 class View
 {
 
+    public static $instance;
+
     public readonly ?Theme $theme;
     public readonly WpBlade $blade;
 
     private Container $container;
+
+
+
+
+    public static function getInstance($container)
+    {
+        if(!static::$instance) {
+            static::$instance = new static($container);
+        }
+        return static::$instance;
+    }
+
+
+
 
     public function __construct(Container $container, Theme $theme = null)
     {
@@ -82,7 +98,7 @@ class View
         return $render($compiled, $variables);
     }
 
-    public function loadComponentsFromFolder(string $componentFolder, string $namespace = 'WpPecule\\Theme\\Components')
+    public function loadComponentsFromFolder(string $componentFolder, string $namespace = 'Deljdlx\WPForge\Components')
     {
         $files = rglob($componentFolder, '*.php');
 
@@ -90,7 +106,8 @@ class View
             $relativePath = str_replace($componentFolder, '', $file);
             $className = str_replace('.php', '', $relativePath);
             $className = str_replace('/', '\\', $className);
-            $fqcn = $namespace . $className;
+            $fqcn = $namespace .'\\' . $className;
+
             if (!class_exists($fqcn)) {
                 error_log("Component class not found : $fqcn");
                 continue;

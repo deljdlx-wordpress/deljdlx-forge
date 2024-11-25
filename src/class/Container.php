@@ -1,6 +1,7 @@
 <?php
 namespace Deljdlx\WPForge;
 
+use Illuminate\Config\Repository;
 use Illuminate\Container\Container as LaravelContainer;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
@@ -47,7 +48,32 @@ class Container extends LaravelContainer
         $this->bindIf('events', function () {
             return new Dispatcher();
         }, true);
+    }
 
+    public function bindOrMerge(string $name, $callback) {
+
+        if($this->has($name)) {
+
+            $config = $this->get($name);
+            if($config instanceof Repository) {
+                $newConfig = $callback();
+                // merge recusively $newConfig  with $config
+                foreach($newConfig->all() as $key => $value) {
+                    if(is_array($value)) {
+                        $config->set($key, array_merge_recursive($config->get($key, []), $value));
+                    } else {
+                        $config->set($key, $value);
+                    }
+                }
+
+                $newCallback = function() use ($config) {
+                    return $config;
+                };
+                return $this->bind($name, $newCallback);
+            }
+        }
+
+        return $this->bind($name, $callback);
     }
 
     /**

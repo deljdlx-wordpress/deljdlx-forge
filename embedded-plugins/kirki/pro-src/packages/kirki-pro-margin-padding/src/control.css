@@ -1,0 +1,109 @@
+.customize-control-kirki-margin .kirki-control-label,
+.customize-control-kirki-padding .kirki-control-label {
+  position: relative;
+  display: block;
+}
+.customize-control-kirki-margin .customize-control-description,
+.customize-control-kirki-padding .customize-control-description {
+  padding-right: 30px;
+}
+.customize-control-kirki-margin .kirki-control-form,
+.customize-control-kirki-padding .kirki-control-form {
+  position: relative;
+  margin-bottom: 12px;
+}
+.customize-control-kirki-margin .kirki-control-form:hover .kirki-control-reset,
+.customize-control-kirki-padding .kirki-control-form:hover .kirki-control-reset {
+  opacity: 1;
+}
+.customize-control-kirki-margin .kirki-control-reset,
+.customize-control-kirki-padding .kirki-control-reset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 50px;
+  right: 0;
+  position: absolute;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  color: #50575e;
+  background-color: transparent;
+  border-radius: 50%;
+  border-width: 0;
+  opacity: 0;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 3;
+}
+.customize-control-kirki-margin .kirki-control-reset:focus,
+.customize-control-kirki-padding .kirki-control-reset:focus {
+  opacity: 1;
+}
+.customize-control-kirki-margin .kirki-control-reset:hover i,
+.customize-control-kirki-padding .kirki-control-reset:hover i {
+  color: #f00;
+  transform: rotate(-45deg);
+}
+.customize-control-kirki-margin .kirki-control-reset i,
+.customize-control-kirki-padding .kirki-control-reset i {
+  font-size: 12px;
+  width: auto;
+  height: auto;
+  transform: rotate(45deg);
+  transition: transform 0.3s;
+}
+.customize-control-kirki-margin .kirki-control-cols,
+.customize-control-kirki-padding .kirki-control-cols {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.customize-control-kirki-margin .kirki-control-left-col,
+.customize-control-kirki-padding .kirki-control-left-col {
+  width: 91%;
+}
+.customize-control-kirki-margin .kirki-control-right-col,
+.customize-control-kirki-padding .kirki-control-right-col {
+  width: 9%;
+  text-align: right;
+}
+.customize-control-kirki-margin .kirki-control-fields,
+.customize-control-kirki-padding .kirki-control-fields {
+  display: flex;
+}
+.customize-control-kirki-margin .kirki-control-field,
+.customize-control-kirki-padding .kirki-control-field {
+  padding-right: 5px;
+  width: 25%;
+}
+.customize-control-kirki-margin .kirki-control-input,
+.customize-control-kirki-padding .kirki-control-input {
+  padding-left: 3px;
+  padding-right: 3px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #f7f7f7;
+  border-color: #bbb;
+  border-radius: 4px;
+  z-index: 2;
+  transition: box-shadow 0.15s;
+}
+.customize-control-kirki-margin .kirki-control-input:focus,
+.customize-control-kirki-padding .kirki-control-input:focus {
+  background-color: #fff;
+}
+.customize-control-kirki-margin .kirki-control-unit,
+.customize-control-kirki-padding .kirki-control-unit {
+  position: relative;
+  top: -10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.customize-control-kirki-margin .kirki-control-sublabel,
+.customize-control-kirki-padding .kirki-control-sublabel {
+  display: block;
+  font-size: 11px;
+  text-align: center;
+  text-transform: capitalize;
+}/*# sourceMappingURL=control.css.map */
