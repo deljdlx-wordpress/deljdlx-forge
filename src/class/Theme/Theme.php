@@ -37,7 +37,7 @@ class Theme
 
 
 
-    public static function getInstance(Container $container)
+    public static function getInstance($container)
     {
         if(!static::$instance) {
             static::$instance = new static($container);
@@ -47,7 +47,7 @@ class Theme
 
 
 
-    public function __construct(Container $pluginContainer)
+    public function __construct($pluginContainer)
     {
         $this->view = $pluginContainer->get(View::class);
         $this->loop = new Loop();

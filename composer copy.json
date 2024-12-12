@@ -1,0 +1,17 @@
+{
+    "autoload": {
+        "psr-4" : {
+            "Deljdlx\\WPForge\\" : "./src/class"
+        },
+        "files": [
+            "./src/helpers.php"
+        ]
+    },
+
+    "config": {
+        "vendor-dir": "composer"
+    },
+    "require": {
+
+    }
+}

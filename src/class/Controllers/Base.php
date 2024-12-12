@@ -16,13 +16,13 @@ class Base
     public static $prependCss = [];
     public static $appendCss = [];
 
-    protected Container $container;
+    protected $container;
     protected View $view;
     protected Theme $theme;
 
     protected ?Request $request = null;
 
-    public function __construct(Container $container)
+    public function __construct($container)
     {
         $this->container = $container;
         $this->view = $container->get(View::class);

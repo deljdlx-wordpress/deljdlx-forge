@@ -8,6 +8,9 @@ use Illuminate\Filesystem\Filesystem;
 
 class Container extends LaravelContainer
 {
+
+    // protected static $instance;
+
     /**
      * The Laravel framework version.
      *
@@ -30,7 +33,7 @@ class Container extends LaravelContainer
     public function __construct()
     {
         static::setInstance($this);
-        $this->instance('app', $this);
+        $this->instance('wpapp', $this);
 
 
         foreach ([

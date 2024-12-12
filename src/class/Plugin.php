@@ -21,7 +21,7 @@ class Plugin
     protected $api;
     protected $customPostTypes = [];
     protected $customTaxonomies = [];
-    protected Container $container;
+    protected $container;
     protected View $view;
     protected Router $router;
     protected Theme $theme;
@@ -34,7 +34,7 @@ class Plugin
         return static::$instance;
     }
 
-    public function __construct(Container $container,$bootstrapFile = null)
+    public function __construct($container,$bootstrapFile = null)
     {
         if(!static::$instance) {
             static::$instance = $this;
@@ -106,7 +106,7 @@ class Plugin
         return $this->theme;
     }
 
-    public function getContainer(): Container
+    public function getContainer()
     {
         return $this->container;
     }

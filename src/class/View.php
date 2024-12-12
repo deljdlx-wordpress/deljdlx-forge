@@ -14,7 +14,7 @@ class View
     public readonly ?Theme $theme;
     public readonly WpBlade $blade;
 
-    private Container $container;
+    private $container;
 
 
 
@@ -30,7 +30,7 @@ class View
 
 
 
-    public function __construct(Container $container, Theme $theme = null)
+    public function __construct($container, Theme $theme = null)
     {
         $this->container = $container;
 

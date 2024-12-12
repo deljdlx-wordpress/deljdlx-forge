@@ -17,6 +17,9 @@ class Corcel
      */
     public static function isLaravel()
     {
+
+        // return false;
+
         return function_exists('app') && (
             app() instanceof Application ||
             strpos(app()->version(), 'Lumen') === 0

@@ -20,7 +20,7 @@ class WpBlade
 
     private $compiler;
 
-    private Container $container;
+    private $container;
 
 
     public static function getInstance(Container $container)
@@ -43,7 +43,7 @@ class WpBlade
     }
 
 
-    public function __construct(Container $container)
+    public function __construct($container)
     {
         $this->container = $container;
 
@@ -60,7 +60,6 @@ class WpBlade
         foreach($this->container->config->get('view')['paths'] as $path) {
             $this->factory->getFinder()->addLocation($path);
         }
-
 
         return $this->factory->make($view, $data, $mergeData);
     }
