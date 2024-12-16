@@ -226,7 +226,7 @@ class Theme
         elseif(strpos($source, 'plugin://') === 0) {
             $pluginName = preg_replace('`plugin://(.*?)/.*`', '$1', $source);
             $path = preg_replace('`plugin://.*?/(.*)`', '$1', $source);
-            $url = get_home_url() . '/wp-content/plugins/' . $pluginName . '/' . $path;
+            $url = WP_CONTENT_URL . '/plugins/' . $pluginName . '/' . $path;
         }
         else {
             $url = get_theme_file_uri($source);
