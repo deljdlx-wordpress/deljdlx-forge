@@ -7,7 +7,7 @@ use Deljdlx\WPForge\Theme\Theme;
 use Deljdlx\WPForge\View;
 use Illuminate\Http\Request;
 
-class Base
+class BaseController
 {
 
     public static $prependJs = [];
