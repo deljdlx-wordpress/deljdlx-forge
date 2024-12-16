@@ -223,6 +223,9 @@ class Theme
         if(strpos($source, 'http') === 0) {
             $url = $source;
         }
+        elseif(strpos($source, '//') === 0) {
+            $url = $source;
+        }
         elseif(strpos($source, 'plugin://') === 0) {
             $pluginName = preg_replace('`plugin://(.*?)/.*`', '$1', $source);
             $path = preg_replace('`plugin://.*?/(.*)`', '$1', $source);
