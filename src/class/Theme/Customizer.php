@@ -137,6 +137,10 @@ class Customizer
                     ]
                 );
 
+                if($control === null) {
+                    $control = WP_Customize_Control::class;
+                }
+
                 $themeCustomizerObject->add_control(
                     new $control(
                         $themeCustomizerObject,
