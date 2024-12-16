@@ -7,7 +7,7 @@ use Deljdlx\WPForge\Theme\Theme;
 use Deljdlx\WPForge\View;
 use Illuminate\Http\Request;
 
-class Base
+class BaseController
 {
 
     public static $prependJs = [];
@@ -22,8 +22,14 @@ class Base
 
     protected ?Request $request = null;
 
-    public function __construct(Container $container)
+    public function __construct(Container $container = null)
     {
+
+        if($container === null) {
+            $container = Container::getInstance();
+        }
+
+
         $this->container = $container;
         $this->view = $container->get(View::class);
         $this->theme = $container->get(Theme::class);
