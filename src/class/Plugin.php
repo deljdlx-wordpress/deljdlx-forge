@@ -34,6 +34,25 @@ class Plugin
         return static::$instance;
     }
 
+    public static function run()
+    {
+        $instance = static::getInstance();
+
+        try {
+            $result = $instance->router->route();
+
+            if($result) {
+                http_response_code(200);
+                echo $result;
+                return true;
+            }
+        }
+        catch(\Exception $e) {
+            dump($e);
+        }
+        return false;
+    }
+
     public function __construct(Container $container,$bootstrapFile = null)
     {
         if(!static::$instance) {
