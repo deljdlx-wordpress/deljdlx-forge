@@ -1,0 +1,95 @@
+.customize-control-kirki-responsive {
+  position: relative;
+  z-index: 1;
+}
+.customize-control-kirki-responsive .customize-control-title {
+  display: flex;
+}
+
+.kirki-responsive .kirki-device-buttons,
+.kirki-responsive .kirki-device-button {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.kirki-responsive .kirki-device-buttons {
+  display: flex;
+  top: 3px;
+  justify-content: flex-start;
+  position: relative;
+  margin-left: 12px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.kirki-responsive .kirki-device-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-right: 3px;
+  width: 22px;
+  height: 22px;
+  background-color: #eee;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.kirki-responsive .kirki-device-button i {
+  width: 11px;
+  height: 11px;
+  font-size: 11px;
+}
+.kirki-responsive .kirki-device-button.is-active, .kirki-responsive .kirki-device-button:hover {
+  background-color: #ddd;
+}
+
+[data-kirki-parent-responsive-id].customize-control-kirki-switch {
+  top: -5px;
+}
+[data-kirki-parent-responsive-id].customize-control-kirki-switch .kirki-switch .kirki-toggle-switch-label {
+  padding-top: 0;
+}
+[data-kirki-parent-responsive-id].customize-control-kirki-switch .kirki-switch .toggle-on,
+[data-kirki-parent-responsive-id].customize-control-kirki-switch .kirki-switch .toggle-off {
+  bottom: -5px;
+}
+
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id] {
+  margin-bottom: -35px;
+}
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id].customize-control-kirki-react-colorful {
+  margin-bottom: -30px;
+}
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id].customize-control-kirki-react-colorful .kirki-trigger-circle-wrapper {
+  z-index: 2;
+}
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id].customize-control-kirki-checkbox {
+  display: flex;
+  justify-content: flex-end;
+  top: 9px;
+}
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id].customize-control-kirki-checkbox [data-customize-setting-link] {
+  z-index: 2;
+}
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id].customize-control-kirki-toggle {
+  top: 14px;
+}
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id].customize-control-kirki-toggle .kirki-toggle {
+  display: flex;
+  justify-content: flex-end;
+}
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id].customize-control-kirki-toggle .kirki-toggle .kirki-control-form {
+  display: inline-block;
+  display: inline-flex;
+}
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id].customize-control-kirki-toggle .kirki-control-form {
+  z-index: 2;
+}
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id] .customize-control-title,
+.customize-control-kirki-responsive-horizontal[data-kirki-parent-responsive-id] .customize-control-description {
+  padding-right: 25px;
+}
+
+.kirki-responsive-item-hidden {
+  display: none !important;
+}/*# sourceMappingURL=control.css.map */

@@ -1,0 +1,47 @@
+.customize-control-kirki-headline {
+  position: relative;
+  left: -24px;
+  padding: 10px 24px;
+  width: calc(100% + 48px);
+  background-color: #fff;
+}
+.customize-control-kirki-headline .customize-control-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.2;
+  font-size: 14px;
+  font-weight: 600;
+}
+.customize-control-kirki-headline .customize-control-description {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.3;
+}
+.customize-control-kirki-headline .kirki-tooltip-wrapper .tooltip-trigger {
+  top: -4px;
+  left: 2px;
+}
+.customize-control-kirki-headline .kirki-tooltip-wrapper .tooltip-trigger:hover + .tooltip-content {
+  bottom: 29px;
+}
+.customize-control-kirki-headline .kirki-tooltip-wrapper .tooltip-content {
+  bottom: 26px;
+}
+
+.customize-control-kirki-headline-toggle {
+  position: relative;
+  padding: 10px 24px;
+  width: calc(100% + 48px);
+  left: -24px;
+  background-color: #fff;
+}
+.customize-control-kirki-headline-toggle.customize-control-kirki-switch .kirki-toggle {
+  align-items: center;
+}
+.customize-control-kirki-headline-toggle .customize-control-title {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.customize-control-kirki-headline-toggle .kirki-toggle .kirki-control-form {
+  top: 2px;
+}/*# sourceMappingURL=control.css.map */

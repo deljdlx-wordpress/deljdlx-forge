@@ -1,0 +1,24 @@
+{
+    "autoload": {
+        "psr-4" : {
+            "Deljdlx\\WPForge\\" : "./src/class"
+        },
+        "files": [
+            "./src/helpers.php"
+        ]
+    },
+
+    "config": {
+        "vendor-dir": "composer"
+    },
+    "require": {
+        "illuminate/view": "^9",
+        "jgrossi/corcel": "^6.0",
+        "illuminate/config": "^9.48",
+        "symfony/var-dumper": "^6.3",
+        "erusev/parsedown": "^1.7",
+        "corcel/acf": "^0.1.13",
+        "analog/analog": "^1.0",
+        "illuminate/http": "^9.52"
+    }
+}
