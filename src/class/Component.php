@@ -16,11 +16,11 @@ abstract class Component extends ViewComponent
         $theme = Theme::getInstance(Container::getInstance());
 
         foreach ($this->css as $css) {
-            $theme->addCss($css);
+            $theme->prependCss($css);
         }
 
         foreach ($this->js as $js) {
-            $theme->addJs($js);
+            $theme->prependJs($js);
         }
     }
 

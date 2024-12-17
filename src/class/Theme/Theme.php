@@ -141,6 +141,11 @@ class Theme
         return $this;
     }
 
+    public function prependCss(array|string $css)
+    {
+        return $this->addCss($css, true);
+    }
+
     public function addCss(array|string $css, $prepend = false)
     {
         if(is_string($css)) {
