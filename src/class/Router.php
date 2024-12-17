@@ -73,18 +73,6 @@ class Router
     {
         $uri = $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
-
-        if(!strpos($uri, '.css')) {
-            PeculeLogger::info([
-                'method' => $_SERVER['REQUEST_METHOD'],
-                'get' => $_GET,
-                'post' => $_POST ??  null,
-                'url' => $uri,
-            ], 'page_access'
-            );
-        }
-
-
         foreach ($this->routes as $route) {
 
             foreach($route['methods'] as $routeMethod) {
