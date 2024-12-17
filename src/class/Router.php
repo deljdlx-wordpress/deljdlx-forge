@@ -74,7 +74,7 @@ class Router
         $uri = $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
 
-        if(!strpos($uri, '.css')) {
+        if(strpos($uri, '.css') === false && !strpos($uri, 'wp-json') === false) {
             PeculeLogger::info([
                 'method' => $_SERVER['REQUEST_METHOD'],
                 'get' => $_GET,
