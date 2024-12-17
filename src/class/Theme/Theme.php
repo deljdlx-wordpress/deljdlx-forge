@@ -34,9 +34,9 @@ class Theme
     private array $adminCss = [];
     private array $adminJs = [];
 
-
-
     private array  $supports = [];
+
+    private string $id;
 
 
 
@@ -52,6 +52,9 @@ class Theme
 
     public function __construct(Container $pluginContainer)
     {
+
+        $this->id = uniqid();
+
         $this->view = $pluginContainer->get(View::class);
         $this->loop = new Loop();
         $this->model = new Model();
@@ -218,20 +221,16 @@ class Theme
 
     public function loadCss()
     {
-
         foreach($this->mandatoryCss as $index => $url) {
             $cssUrl = $this->computeUrl($url);
-
             wp_enqueue_style(
                 'forge-mandatory-css-' . $index,
                 $cssUrl,
             );
         }
 
-
         foreach ($this->css as $index => $url) {
             $cssUrl = $this->computeUrl($url);
-
             wp_enqueue_style(
                 'forge-css-' . $index,
                 $cssUrl,
@@ -264,7 +263,6 @@ class Theme
                 true // js file loaded at the end of body
             );
         }
-
 
         foreach ($this->js as $index => $url) {
             $url = $this->computeUrl($url);

@@ -14,7 +14,6 @@ abstract class Component extends ViewComponent
     public function render()
     {
         $theme = Theme::getInstance(Container::getInstance());
-
         foreach ($this->css as $css) {
             $theme->prependCss($css);
         }
