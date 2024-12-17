@@ -268,6 +268,7 @@ class Theme
 
         foreach ($this->js as $index => $url) {
             $url = $this->computeUrl($url);
+            // dump($url);
             wp_enqueue_script(
                 'forge-js-' . $index,   // js unique name
                 $url,
