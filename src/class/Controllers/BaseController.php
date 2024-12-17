@@ -22,14 +22,8 @@ class BaseController
 
     protected ?Request $request = null;
 
-    public function __construct(Container $container = null)
+    public function __construct(Container $container)
     {
-
-        if($container === null) {
-            $container = Container::getInstance();
-        }
-
-
         $this->container = $container;
         $this->view = $container->get(View::class);
         $this->theme = $container->get(Theme::class);

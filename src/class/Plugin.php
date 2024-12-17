@@ -34,6 +34,25 @@ class Plugin
         return static::$instance;
     }
 
+    public static function run()
+    {
+        $instance = static::getInstance();
+
+        try {
+            $result = $instance->router->route();
+
+            if($result) {
+                http_response_code(200);
+                echo $result;
+                return true;
+            }
+        }
+        catch(\Exception $e) {
+            dump($e);
+        }
+        return false;
+    }
+
     public function __construct(Container $container,$bootstrapFile = null)
     {
         if(!static::$instance) {
@@ -52,19 +71,16 @@ class Plugin
 
         $this->view = $container->get(View::class);
 
-
-        
-        
         // $this->theme = new Theme($this->container);
         $this->theme = $container->get(Theme::class);
-        
+
         $this->setup();
-        
+
+
         // check if session is started
         if(session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
-
 
         register_activation_hook(
             $this->bootstrapFile,

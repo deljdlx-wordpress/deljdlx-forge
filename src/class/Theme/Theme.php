@@ -28,6 +28,9 @@ class Theme
     private array $css = [];
     private array $js = [];
 
+    private $mandatoryJs = [];
+    private $mandatoryCss = [];
+
     private array $adminCss = [];
     private array $adminJs = [];
 
@@ -122,6 +125,27 @@ class Theme
         }
     }
 
+    public function addMandatoryCss(array|string $css, $prepend = false)
+    {
+        if(is_string($css)) {
+            $css = [$css];
+        }
+        if($prepend) {
+            $this->mandatoryCss = array_merge($css, $this->mandatoryCss);
+        }
+        else {
+            $this->mandatoryCss = array_merge($this->mandatoryCss, $css);
+        }
+        $this->mandatoryCss = array_unique($this->mandatoryCss);
+
+        return $this;
+    }
+
+    public function prependCss(array|string $css)
+    {
+        return $this->addCss($css, true);
+    }
+
     public function addCss(array|string $css, $prepend = false)
     {
         if(is_string($css)) {
@@ -136,6 +160,27 @@ class Theme
         $this->css = array_unique($this->css);
 
         return $this;
+    }
+
+    public function addMandatoryJs(array|string $js, $prepend = false)
+    {
+        if(is_string($js)) {
+            $js = [$js];
+        }
+        if($prepend) {
+            $this->mandatoryJs = array_merge($js, $this->mandatoryJs);
+        }
+        else {
+            $this->mandatoryJs = array_merge($this->mandatoryJs, $js);
+        }
+        $this->mandatoryJs = array_unique($this->mandatoryJs);
+
+        return $this;
+    }
+
+    public function prependJs(array|string $js)
+    {
+        return $this->addJs($js, true);
     }
 
     public function addJs(array|string $js, $prepend = false)
@@ -173,6 +218,17 @@ class Theme
 
     public function loadCss()
     {
+
+        foreach($this->mandatoryCss as $index => $url) {
+            $cssUrl = $this->computeUrl($url);
+
+            wp_enqueue_style(
+                'forge-mandatory-css-' . $index,
+                $cssUrl,
+            );
+        }
+
+
         foreach ($this->css as $index => $url) {
             $cssUrl = $this->computeUrl($url);
 
@@ -197,16 +253,22 @@ class Theme
 
     public function loadJs()
     {
+
+        foreach ($this->mandatoryJs as $index => $url) {
+            $url = $this->computeUrl($url);
+            wp_enqueue_script(
+                'forge-mandatory-js-' . $index,   // js unique name
+                $url,
+                [], // handle dependencies
+                '1.0.0', // javascript file version
+                true // js file loaded at the end of body
+            );
+        }
+
+
         foreach ($this->js as $index => $url) {
             $url = $this->computeUrl($url);
-
-            // echo '<div style="border: solid 2px #F00">';
-            //     echo '<div style="; background-color:#CCC">@'.__FILE__.' : '.__LINE__.'</div>';
-            //     echo '<pre style="background-color: rgba(255,255,255, 0.8); color: #000">';
-            //     print_r($url);
-            //     echo '</pre>';
-            // echo '</div>';
-
+            // dump($url);
             wp_enqueue_script(
                 'forge-js-' . $index,   // js unique name
                 $url,
@@ -227,8 +289,6 @@ class Theme
             $url = $source;
         }
         elseif(strpos($source, 'plugin://') === 0) {
-
-            $contentPath = 
             $pluginName = preg_replace('`plugin://(.*?)/.*`', '$1', $source);
             $path = preg_replace('`plugin://.*?/(.*)`', '$1', $source);
             $url = WP_CONTENT_URL . '/plugins/' . $pluginName . '/' . $path;
@@ -261,6 +321,11 @@ class Theme
         }
 
         return false;
+    }
+
+    public function getJs(): array
+    {
+        return $this->js;
     }
 
 }

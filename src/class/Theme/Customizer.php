@@ -43,6 +43,35 @@ class Customizer
         );
     }
 
+    // JDLX_TODO check this (pecule)
+    public function addControl($section, $name, $label, $type, $default = null, $input_attrs = [], $choices = [])
+    {
+        add_action(
+            'customize_register',
+            function (WP_Customize_Manager $themeCustomizerObject) use ($section, $name, $label, $type, $default, $input_attrs, $choices)
+            {
+                $themeCustomizerObject->add_setting(
+                    $name,
+                    [
+                        'default' => $default,
+                        'transport' => 'postMessage'
+                    ]
+                );
+
+                $themeCustomizerObject->add_control(
+                    $name,
+                    [
+                        'label' => __($label),
+                        'section' => $section,
+                        'type' => $type,
+                        'input_attrs' => $input_attrs,
+                        'choices' => $choices,
+                    ]
+                );
+            }
+        );
+    }
+
     public function getSetting($name, $default = null)
     {
         return get_theme_mod($name, $default);
@@ -137,7 +166,7 @@ class Customizer
                     ]
                 );
 
-                if($control === null) {
+                if(!$control) {
                     $control = WP_Customize_Control::class;
                 }
 
@@ -269,38 +298,6 @@ class Customizer
             ]
         );
     }
-
-
-    // JDLX_TODO check this (pecule)
-    public function addControl($section, $name, $label, $type, $default = null, $input_attrs = [], $choices = [])
-    {
-        add_action(
-            'customize_register',
-            function (WP_Customize_Manager $themeCustomizerObject) use ($section, $name, $label, $type, $default, $input_attrs, $choices)
-            {
-                $themeCustomizerObject->add_setting(
-                    $name,
-                    [
-                        'default' => $default,
-                        'transport' => 'postMessage'
-                    ]
-                );
-
-                $themeCustomizerObject->add_control(
-                    $name,
-                    [
-                        'label' => __($label),
-                        'section' => $section,
-                        'type' => $type,
-                        'input_attrs' => $input_attrs,
-                        'choices' => $choices,
-                    ]
-                );
-            }
-        );
-    }
-
-
 
     public function addHtml($section, $html)
     {

@@ -101,6 +101,7 @@ class View
     public function loadComponentsFromFolder(string $componentFolder, string $namespace = 'Deljdlx\WPForge\Components')
     {
         $files = rglob($componentFolder, '*.php');
+
         foreach ($files as $file) {
             $relativePath = str_replace($componentFolder, '', $file);
             $className = str_replace('.php', '', $relativePath);
@@ -115,8 +116,6 @@ class View
             $componentTag = class_basename($className);
             $componentTag = preg_replace('/(?<!^)[A-Z](?=[a-z])/', '-$0', $componentTag);
             $componentTag = strtolower($componentTag);
-
-
 
             $this->blade->component($componentTag, $fqcn);
         }

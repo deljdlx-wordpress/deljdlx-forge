@@ -1,20 +1,28 @@
 <?php
 namespace Deljdlx\WPForge;
 
+use Deljdlx\WPForge\Theme\Theme;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\View\Component as ViewComponent;
 
 abstract class Component extends ViewComponent
 {
-    public $id;
 
-    public function createId() {
-        $this->id = $this->generateUniqueId();
-    }
+    protected $js = [];
+    protected $css = [];
 
-    protected function generateUniqueId($length = 10)
+    public function render()
     {
-        return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+        $theme = Theme::getInstance(Container::getInstance());
+
+        foreach ($this->css as $css) {
+            $theme->prependCss($css);
+        }
+
+        foreach ($this->js as $js) {
+            $theme->prependJs($js);
+        }
     }
+
 }
 
