@@ -74,6 +74,10 @@ class Plugin
         // $this->theme = new Theme($this->container);
         $this->theme = $container->get(Theme::class);
 
+        $this->router = $container->get(Router::class);
+
+        // $this->router = Router::getInstance();
+
         $this->setup();
 
 

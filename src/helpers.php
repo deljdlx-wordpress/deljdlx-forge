@@ -1,5 +1,6 @@
 <?php
 
+use Deljdlx\WPForge\Application;
 use Deljdlx\WPForge\Plugin;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Auth\Access\Gate;
@@ -57,10 +58,17 @@ if (!function_exists('app')) {
      */
     function app($abstract = null, array $parameters = [])
     {
+
+        // if (is_null($abstract)) {
+        //     return Container::getInstance();
+        // }
+        // return Container::getInstance()->make($abstract, $parameters);
+
+
         if (is_null($abstract)) {
-            return Container::getInstance();
+            return Application::getInstance();
         }
-        return Container::getInstance()->make($abstract, $parameters);
+        return Application::getInstance()->make($abstract, $parameters);
     }
 }
 
@@ -77,6 +85,7 @@ if (!function_exists('view')) {
     function view($view = null, $data = [], $mergeData = [])
     {
         $factory = app(ViewFactory::class);
+
 
         if (func_num_args() === 0) {
             return $factory;
