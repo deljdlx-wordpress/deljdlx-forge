@@ -73,9 +73,19 @@ class Router
     {
         $uri = $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
-        foreach ($this->routes as $route) {
 
-            foreach($route['methods'] as $routeMethod) {
+        $routes = $this->routes;
+
+        // sort routes by path length
+        usort($routes, function($a, $b) {
+            return strlen($b['path']) <=> strlen($a['path']);
+        });
+
+        $sortedRoutes = [];
+
+        foreach ($routes as $route) {
+
+            foreach($route['methods'] as $routeName =>  $routeMethod) {
                 if($method == $routeMethod && preg_match('`'.$route['path'].'`', $uri)) {
                     return $route['callback'](static::getRequest());
                 }

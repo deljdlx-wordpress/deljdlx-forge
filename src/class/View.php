@@ -16,6 +16,8 @@ class View
 
     private Container $container;
 
+    protected $registeredComponents = [];
+
 
 
 
@@ -116,6 +118,11 @@ class View
             $componentTag = class_basename($className);
             $componentTag = preg_replace('/(?<!^)[A-Z](?=[a-z])/', '-$0', $componentTag);
             $componentTag = strtolower($componentTag);
+
+            $this->registeredComponents[] = [
+                'tag' => $componentTag,
+                'fqcn' => $fqcn
+            ];
 
             $this->blade->component($componentTag, $fqcn);
         }
