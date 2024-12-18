@@ -1,8 +1,11 @@
 <?php
 namespace Deljdlx\WPForge;
 
+use Analog\Analog;
 use Deljdlx\WPForge\Theme\Theme;
 use Illuminate\Config\Repository;
+use Analog\Handler\PDO as HandlerPDO;
+use PDO;
 
 class Application extends Container
 {
@@ -31,6 +34,16 @@ class Application extends Container
 
     protected function initialize()
     {
+
+        $this->bind(PDO::class, function() {
+            $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
+            $username = DB_USER;
+            $password = DB_PASSWORD;
+            $pdo = new PDO($dsn, $username, $password);
+            return $pdo;
+        }, true);
+
+
         $this->bind(Router::class, function() {
             $router = Router::getInstance();
             return $router;
