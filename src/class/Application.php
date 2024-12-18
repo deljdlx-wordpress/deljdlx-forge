@@ -6,8 +6,6 @@ use Illuminate\Config\Repository;
 
 class Application extends Container
 {
-    // public static $instance;
-
     private string $cachePath;
 
     public static function getInstance()
