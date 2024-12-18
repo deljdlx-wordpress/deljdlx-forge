@@ -8,6 +8,10 @@ Plugin Name: JDLX Forge
 Version: 1
 */
 
+if(!defined('ABSPATH')){
+    exit;
+}
+
 
 require 'composer/autoload.php';
 define('JDLX_FORGE_PLUGIN_DIR', __DIR__);
