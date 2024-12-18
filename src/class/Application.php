@@ -54,17 +54,6 @@ class Application extends Container
 
         $this->bind(View::class, function() {
             $view = View::getInstance($this,);
-
-            // $view->loadComponentsFromFolder(
-            //     __DIR__ . '/../deljdlx-forge/src/class/Components/',
-            //     'Deljdlx\WPForge\Components',
-            // );
-
-            // $view->loadComponentsFromFolder(
-            //     __DIR__ . '/src/class/Components/',
-            //     'Deljdlx\WPTaverne\Components',
-            // );
-
             return $view;
         }, true);
     }
