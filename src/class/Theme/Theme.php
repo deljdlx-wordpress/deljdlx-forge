@@ -188,16 +188,47 @@ class Theme
 
     public function addJs(array|string $js, $prepend = false)
     {
-        if(is_string($js)) {
-            $js = [$js];
-        }
-        if($prepend) {
-            $this->js = array_merge($js, $this->js);
+        if(is_array($js)) {
+            if(array_key_exists('url', $js)) {
+                if($prepend) {
+                    array_unshift($this->js, $js);
+                }
+                else {
+                    $this->js[] = $js;
+                }
+            }
+            else {
+                foreach($js as $descriptor) {
+                    if($prepend) {
+                        array_unshift($this->js, $descriptor);
+                    }
+                    else {
+                        $this->js[] = $descriptor;
+                    }
+                }
+            }
         }
         else {
-            $this->js = array_merge($this->js, $js);
+            if($prepend) {
+                array_unshift($this->js, $js);
+            }
+            else {
+                $this->js[] = $js;
+            }
         }
-        $this->js = array_unique($this->js);
+
+        $unduplicates = [];
+
+        foreach($this->js as $descriptor) {
+            if(is_string($descriptor)) {
+                $unduplicates[$descriptor] = $descriptor;
+            }
+            else {
+                $unduplicates[$descriptor['url']] = $descriptor;
+            }
+        }
+
+        $this->js = $unduplicates;
 
         return $this;
     }
@@ -253,26 +284,46 @@ class Theme
     public function loadJs()
     {
 
-        foreach ($this->mandatoryJs as $index => $url) {
+        foreach ($this->mandatoryJs as $index => $descriptor) {
+
+            if(is_string($descriptor)) {
+                $url = $descriptor;
+            }
+            else {
+                $url = $descriptor['url'];
+            }
+
             $url = $this->computeUrl($url);
             wp_enqueue_script(
                 'forge-mandatory-js-' . $index,   // js unique name
                 $url,
                 [], // handle dependencies
                 '1.0.0', // javascript file version
-                true // js file loaded at the end of body
+                array_merge([
+                    'in_footer' => true,
+                ], $descriptor['options'] ?? [])
             );
         }
 
-        foreach ($this->js as $index => $url) {
+        foreach ($this->js as $index => $descriptor) {
+            if(is_string($descriptor)) {
+                $url = $descriptor;
+            }
+            else {
+                $url = $descriptor['url'];
+            }
+
             $url = $this->computeUrl($url);
-            // dump($url);
+
+
             wp_enqueue_script(
                 'forge-js-' . $index,   // js unique name
                 $url,
                 [], // handle dependencies
                 '1.0.0', // javascript file version
-                true // js file loaded at the end of body
+                array_merge([
+                    'in_footer' => true,
+                ], $descriptor['options'] ?? [])
             );
         }
     }
