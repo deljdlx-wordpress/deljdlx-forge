@@ -171,6 +171,7 @@ class Theme
             $js = [$js];
         }
         if($prepend) {
+            $js = array_reverse($js);
             $this->mandatoryJs = array_merge($js, $this->mandatoryJs);
         }
         else {
@@ -198,6 +199,9 @@ class Theme
                 }
             }
             else {
+                if($prepend) {
+                    $js = array_reverse($js);
+                }
                 foreach($js as $descriptor) {
                     if($prepend) {
                         array_unshift($this->js, $descriptor);

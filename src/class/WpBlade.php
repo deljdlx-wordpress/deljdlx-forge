@@ -57,12 +57,14 @@ class WpBlade
 
     public function make($view, $data = [], $mergeData = []): View
     {
+        $this->factory->getFinder()->setPaths([]);
         foreach($this->container->config->get('view')['paths'] as $path) {
             $this->factory->getFinder()->addLocation($path);
         }
 
-
         return $this->factory->make($view, $data, $mergeData);
+
+
     }
 
     public function directive(string $name, $callback)

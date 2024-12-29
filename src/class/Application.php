@@ -10,6 +10,7 @@ use PDO;
 class Application extends Container
 {
     private string $cachePath;
+    private array $templatePathes = [];
 
     public static function getInstance()
     {
@@ -54,16 +55,18 @@ class Application extends Container
             return $theme;
         }, true);
 
-        $this->bindOrMerge('config', function() {
-            return new Repository([
-                'view' => [
-                    'paths' => [
-                        get_template_directory() . '/templates',
-                    ],
-                    'compiled' => $this->cachePath,
-                ]
-            ]);
-        }, true);
+        $this->addTemplatePath(get_template_directory() . '/templates', 1000);
+
+        // $this->bindOrMerge('config', function() {
+        //     return new Repository([
+        //         'view' => [
+        //             'paths' => [
+        //                 get_template_directory() . '/templates',
+        //             ],
+        //             'compiled' => $this->cachePath,
+        //         ]
+        //     ]);
+        // }, true);
 
         $this->bind(View::class, function() {
             $view = View::getInstance($this,);
@@ -80,14 +83,32 @@ class Application extends Container
         );
     }
 
-    public function addTemplatePath(string $path)
+    public function addTemplatePath(string $path, ?int $prority = null)
     {
-        $this->bindOrMerge('config', function() use ($path){
+
+        $this->templatePathes[] = [
+            'path' => $path,
+            'priority' => $prority,
+        ];
+
+        $this->bind('config', function() {
+
+            $templatePathes = $this->templatePathes;
+            // sort by priority
+            usort($templatePathes, function($a, $b) {
+                // return $a['priority'] <=> $b['priority'];
+                return $b['priority'] <=> $a['priority'];
+            });
+
+            $paths = [];
+            foreach($templatePathes as $templatePath) {
+                $paths[] = $templatePath['path'];
+            }
+
             return new Repository([
                 'view' => [
-                    'paths' => [
-                        $path
-                    ],
+                    'paths' => $paths,
+                    'compiled' => $this->cachePath,
                 ]
             ]);
         }, true);

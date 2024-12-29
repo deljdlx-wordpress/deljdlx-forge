@@ -57,20 +57,10 @@ class BaseController
     public function renderTemplate($templateName, $variables = [])
     {
 
-        foreach(static::$prependJs as $js) {
-            $this->addJs($js, true);
-        }
-        foreach(static::$appendJs as $js) {
-            $this->addJs($js, false);
-        }
-
-        foreach(static::$prependCss as $css) {
-            $this->addCss($css, true);
-        }
-
-        foreach(static::$appendCss as $css) {
-            $this->addCss($css, false);
-        }
+        $this->addJs(static::$prependJs, true);
+        $this->addJs(static::$appendJs, false);
+        $this->addCss(static::$prependCss, true);
+        $this->addCss(static::$appendCss, false);
 
         return $this->view->render($templateName, $variables);
     }

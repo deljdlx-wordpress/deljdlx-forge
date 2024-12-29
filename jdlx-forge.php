@@ -22,6 +22,6 @@ define('JDLX_FORGE_ENABLED', true);
 
 
 $container = Application::getInstance();
-$container->addTemplatePath(__DIR__ . '/templates');
+$container->addTemplatePath(__DIR__ . '/templates', 0);
 
 require_once __DIR__ . '/embedded-plugins/kirki/kirki.php';

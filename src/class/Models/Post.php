@@ -423,7 +423,8 @@ class Post extends ModelPost
             return '';
         }
 
-        if($applyFilter) {
+
+        if($applyFilter && $this->wpPost->post_content) {
             return apply_filters('the_content', $this->wpPost->post_content);
         }
 
