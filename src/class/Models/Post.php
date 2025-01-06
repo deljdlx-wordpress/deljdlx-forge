@@ -322,8 +322,12 @@ class Post extends ModelPost
         return $this->post_type;
     }
 
-    public function getField($fieldName) {
-        return $this->getAcfField($fieldName);
+    public function getField($fieldName, $ifNull = null) {
+        if($this->getAcfField($fieldName) !== null) {
+            return $this->getAcfField($fieldName);
+        } else {
+            return $ifNull;
+        }
     }
 
     public function getFields() {
