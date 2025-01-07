@@ -57,10 +57,42 @@ class BaseController
     public function renderTemplate($templateName, $variables = [])
     {
 
-        $this->addJs(static::$prependJs, true);
-        $this->addJs(static::$appendJs, false);
-        $this->addCss(static::$prependCss, true);
-        $this->addCss(static::$appendCss, false);
+        // get all parent classes
+        $classes = [];
+        $class = get_class($this);
+
+        $prependJs = [];
+        $appendJs = [];
+
+        $prependCss = [];
+        $appendCss = [];
+
+        while($class) {
+            $classes[] = $class;
+            $class = get_parent_class($class);
+
+            if($class) {
+                $prependJs = array_merge($prependJs, $class::$prependJs);
+                $appendJs = array_merge($appendJs, $class::$appendJs);
+                $prependCss = array_merge($prependCss, $class::$prependCss);
+                $appendCss = array_merge($appendCss, $class::$appendCss);
+            }
+        }
+
+        $prependJs = array_merge($prependJs, static::$prependJs);
+        $appendJs = array_merge($appendJs, static::$appendJs);
+        $prependCss = array_merge($prependCss, static::$prependCss);
+        $appendCss = array_merge($appendCss, static::$appendCss);
+
+        $this->addJs($prependJs, true);
+        $this->addJs($appendJs, false);
+        $this->addCss($prependCss, true);
+        $this->addCss($appendCss, false);
+
+        // $this->addJs(static::$prependJs, true);
+        // $this->addJs(static::$appendJs, false);
+        // $this->addCss(static::$prependCss, true);
+        // $this->addCss(static::$appendCss, false);
 
         return $this->view->render($templateName, $variables);
     }
